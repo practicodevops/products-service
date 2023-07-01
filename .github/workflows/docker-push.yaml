@@ -22,4 +22,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: user/products-service:latest
+          tags: proyectodevopsem/products-service:latest
