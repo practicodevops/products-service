@@ -20,4 +20,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build
-        run: mvnw package
+        run: |
+          cd ../../
+          ./mvnw package
