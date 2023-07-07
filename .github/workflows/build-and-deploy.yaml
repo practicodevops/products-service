@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: proyectodevopsem/products-service:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/products-service:latest
