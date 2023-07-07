@@ -17,9 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Build
-        run: |
-          cd ../../
-          ./mvnw package
+    - uses: actions/checkout@v3
+    - name: Set up JDK 8
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'oracle'
+        cache: maven
+    - name: Build
+      run: mvn -B package --file pom.xml
