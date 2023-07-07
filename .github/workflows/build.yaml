@@ -24,4 +24,4 @@ jobs:
         java-version: 1.8
         java-package: jdk
     - name: Build
-      run: mvn -B package --file pom.xml
+      run: mvn package --file pom.xml
