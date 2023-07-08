@@ -31,4 +31,4 @@ jobs:
       run: mvn -B clean package
       
     - name: Run Code Analysis
-      uses: ./github/workflows/code-analysis.yaml
+      uses: ./.github/workflows/code-analysis.yaml

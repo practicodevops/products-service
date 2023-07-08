@@ -30,4 +30,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Code Analysis
-      uses: ./github/workflows/code-analysis.yaml
+      uses: ./.github/workflows/code-analysis.yaml
