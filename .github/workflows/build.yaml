@@ -1,4 +1,4 @@
-name: Build
+name: Build and Run code analysis
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build and analyze
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +29,7 @@ jobs:
         
     - name: Build
       run: mvn -B clean package
-      
-    - name: Run Code Analysis
-      uses: ./.github/workflows/code-analysis.yaml
+  
+  analyze:
+    name: Run Code Analysis
+    uses: ./.github/workflows/code-analysis.yaml
