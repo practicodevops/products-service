@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Deprecated
 @Service
 public class ProductsLogic {
 
@@ -34,7 +33,6 @@ public class ProductsLogic {
         return testProducts.get(id);
     }
 
-    @Deprecated
     public boolean hasProduct(String id) {
         logger.info("Checking if has product: " + id);
         return testProducts.containsKey(id);
