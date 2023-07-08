@@ -1,2 +1,2 @@
-public class Nothing {  // Noncompliant
+public class TestLogic {  // Noncompliant
 }
