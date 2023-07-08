@@ -32,4 +32,5 @@ jobs:
   
   analyze:
     name: Run Code Analysis
+    needs: build
     uses: ./.github/workflows/code-analysis.yaml
