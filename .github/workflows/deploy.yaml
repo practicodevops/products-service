@@ -38,13 +38,6 @@ jobs:
       EKS-CLUSTER-SUFFIX: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'staging' && 'staging' || github.ref == 'develop' && 'dev' }}
     needs: docker-push
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3.5.3
-      with:
-        repository: practicodevops/practico-devops-infrastructure
-        ref: refs/heads/main
-        path: kubernetes
-        
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -53,8 +46,26 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-    # Install kubectl and helm
+    # Install kubectl
+    - name: Set Up Kubectl
+      run: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+        kubectl version --client
+
+    - name: Set Up Helm
+      run: |
+        curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        chmod 700 get_helm.sh
+        ./get_helm.sh
     
+    - name: Checkout
+      uses: actions/checkout@v3.5.3
+      with:
+        repository: practicodevops/practico-devops-infrastructure
+        ref: refs/heads/main
+        path: kubernetes
+
     - name: Configure Kubernetes context
       run: |
         aws eks update-kubeconfig --name eks-cluster-${{ env.EKS-CLUSTER-SUFFIX }} --region us-east-1
