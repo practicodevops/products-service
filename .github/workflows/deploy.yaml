@@ -42,8 +42,7 @@ jobs:
       uses: actions/checkout@v3.5.3
       with:
         repository: practicodevops/practico-devops-infrastructure
-        ref: main
-        token: Personal access token generado de la organizacion
+        ref: refs/heads/main
         path: kubernetes
         
     - name: Configure AWS Credentials
