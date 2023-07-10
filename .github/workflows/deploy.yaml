@@ -60,6 +60,5 @@ jobs:
 
     - name: Deploy to EKS
       run: |
-        cd kubernetes
         kubectl apply -f ingress.yaml
         helm upgrade --install products ./products-service
