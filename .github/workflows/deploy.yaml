@@ -46,7 +46,6 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-    # Install kubectl
     - name: Set Up Kubectl
       run: |
         curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
