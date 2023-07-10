@@ -34,6 +34,8 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
+    env:
+      EKS-CLUSTER-SUFFIX: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'staging' && 'staging' || github.ref == 'develop' && 'dev' }}
     needs: docker-push
     steps:
     - name: Checkout
@@ -47,16 +49,16 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-        aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-        aws-region: ${{secrets.AWS_DEFAULT_REGION}}
+        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
     # Install kubectl and helm
     
     - name: Configure Kubernetes context
       run: |
-        aws eks update-kubeconfig --name ${{ eks-cluster }} --region us-east-1
+        aws eks update-kubeconfig --name eks-cluster-${{ env.EKS-CLUSTER-SUFFIX }} --region us-east-1
 
     - name: Deploy to EKS
       run: |
