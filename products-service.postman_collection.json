@@ -9,7 +9,7 @@
 		{
 			"name": "Get All",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"url": "http://a15c61819f76f4490bc3be0ab6fe8326-1106074179.us-east-1.elb.amazonaws.com/products"
 			},
