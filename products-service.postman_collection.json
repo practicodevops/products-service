@@ -1,0 +1,19 @@
+{
+	"info": {
+		"_postman_id": "fbfdaa93-fbc4-451e-a4ee-40395d1bd417",
+		"name": "products-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12224557"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/products"
+			},
+			"response": []
+		}
+	]
+}
