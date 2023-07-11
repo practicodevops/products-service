@@ -11,7 +11,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "localhost:8080/products"
+				"url": "http://a15c61819f76f4490bc3be0ab6fe8326-1106074179.us-east-1.elb.amazonaws.com/products"
 			},
 			"response": []
 		}
