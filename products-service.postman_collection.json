@@ -9,11 +9,65 @@
 		{
 			"name": "Get All",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"url": "http://a15c61819f76f4490bc3be0ab6fe8326-1106074179.us-east-1.elb.amazonaws.com/products"
+				"url": "{{path}}/products"
 			},
 			"response": []
+		},
+		{
+			"name": "localhost:8080/products/12",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{path}}/products/123",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"products",
+						"123"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "path",
+			"value": "localhost:8080",
+			"type": "string"
 		}
 	]
 }

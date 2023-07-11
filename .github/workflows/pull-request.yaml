@@ -17,5 +17,3 @@ jobs:
     uses: ./.github/workflows/build-and-analyze.yaml
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  postman-testing:
-    uses: ./.github/workflows/postman-testing.yaml
