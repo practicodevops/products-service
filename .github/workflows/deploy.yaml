@@ -45,7 +45,7 @@ jobs:
       with:
         repository: practicodevops/practico-devops-infrastructure
         ref: refs/heads/feature/issue#4
-        path: kubernetes
+        path: infra
 
     - name: Configure Kubernetes context
       run: |
@@ -53,7 +53,7 @@ jobs:
 
     - name: Navigate to directory
       run: |
-        cd kubernetes
+        cd infra/kubernetes
         ls -la
 
     - name: Deploy to EKS
