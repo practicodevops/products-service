@@ -52,7 +52,9 @@ jobs:
         aws eks update-kubeconfig --name eks-cluster-${{ inputs.ENVIRONMENT }} --region us-east-1
 
     - name: Navigate to directory
-      run: cd kubernetes
+      run: |
+        cd kubernetes
+        ls -la
 
     - name: Deploy to EKS
       run: |
