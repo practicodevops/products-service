@@ -16,7 +16,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8080/products/12",
+			"name": "Get By Id",
 			"request": {
 				"method": "GET",
 				"header": [],
