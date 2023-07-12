@@ -31,8 +31,8 @@ jobs:
       with:
         push: true
         tags: |
-          ${{ github.sha }}${{ secrets.DOCKERHUB_USERNAME }}/products-service:latest
-          ${{ github.sha }}${{ secrets.DOCKERHUB_USERNAME }}/products-service:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/products-service:latest
+          ${{ secrets.DOCKERHUB_USERNAME }}/products-service:${{ github.sha }}
   
   deploy:
     needs: docker-push
