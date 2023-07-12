@@ -66,7 +66,7 @@
 	"variable": [
 		{
 			"key": "path",
-			"value": "localhost:8080",
+			"value": "a8e6707c3be7a466a83f2cf3c63f44c7-740501134.us-east-1.elb.amazonaws.com",
 			"type": "string"
 		}
 	]
