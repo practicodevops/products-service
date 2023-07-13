@@ -30,8 +30,8 @@ jobs:
     - name: Run Container
       run: docker run -d --rm --name products-container -p 8080:8080 products-service:latest
 
-    - name: Curl
-      run: curl http://localhost:8080/products
+    - name: Ps
+      run: docker ps -a
     # - name: Run POSTMAN collection
     #   run: |
     #     newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
