@@ -35,9 +35,11 @@ jobs:
         newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
 
     - name: Stop Container
+      if: always()
       run: docker stop products-container
-      
+
     - name: Delete Docker Image
+      if: always()
       run: docker image rm products-service:latest
 
     - name: Output the run Details
