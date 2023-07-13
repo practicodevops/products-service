@@ -4,9 +4,20 @@ on:
   workflow_call:
 
 jobs:
+  build-image:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build image
+        run: docker build -t products-service:latest .
+
   postman-testing:
     name: Postman testing
     runs-on: ubuntu-latest
+    container:
+      image: products-service:latest
+      volumes:
+        - products-service.postman_collection.json:/app
 
     steps: 
     - uses: actions/checkout@v3
@@ -24,30 +35,12 @@ jobs:
     - name: Make Directory for results
       run: mkdir result
 
-    - name: Build Docker Image
-      run: docker build -t products-service:latest .
-
-    - name: Run Container
-      run: docker run -d --rm --name products-container -p 8080:8080 products-service:latest
-
-    - name: Test
+    - name: Run POSTMAN collection
       run: |
-        docker ps
-        http://localhost:8080/products
-    # - name: Run POSTMAN collection
-    #   run: |
-    #     newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
+        newman run products-service.postman_collection.json -r htmlextra --reporter-htmlextra-export result/report.html
 
-    - name: Stop Container
-      if: always()
-      run: docker stop products-container
-
-    - name: Delete Docker Image
-      if: always()
-      run: docker image rm products-service:latest
-
-    # - name: Output the run Details
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: Reports
-    #     path: result
+    - name: Output the run Details
+      uses: actions/upload-artifact@v3
+      with:
+        name: Reports
+        path: result
