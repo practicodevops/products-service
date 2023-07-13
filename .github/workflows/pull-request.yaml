@@ -20,4 +20,7 @@ jobs:
 
   postman-testing:
     # needs: build-and-analyze
-    uses: ./.github/workflows/postman-testing.yaml  
+    uses: ./.github/workflows/postman-testing.yaml 
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }} 
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }} 

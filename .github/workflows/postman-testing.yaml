@@ -2,6 +2,11 @@ name: Postman testing
 
 on:
   workflow_call:
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
 
 jobs:
   build-image:
@@ -45,12 +50,6 @@ jobs:
 
     - name: Make Directory for results
       run: mkdir result
-
-    - name: Build Docker Image
-      run: docker build -t products-service:latest .
-
-    - name: Run Container
-      run: docker run -d --rm --name products-container -p 8080:8080 products-service:latest
 
     - name: Test
       run: curl localhost:8080/products
