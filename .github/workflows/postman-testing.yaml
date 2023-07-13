@@ -31,7 +31,7 @@ jobs:
       run: sudo apt-get install moreutils
 
     - name: Update Collection JSON with EKS Url
-      run: jq --arg value "test" '.variable[0].value=$value' products-service.postman_collection.json | sponge products-service.postman_collection.json
+      run: jq --arg value "${{ secrets.EKS_URL }}" '.variable[0].value=$value' products-service.postman_collection.json | sponge products-service.postman_collection.json
 
     - name: Read Collection
       run: cat products-service.postman_collection.json
