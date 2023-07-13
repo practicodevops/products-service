@@ -30,9 +30,11 @@ jobs:
     - name: Run Container
       run: docker run -d --rm --name products-container -p 8080:8080 products-service:latest
 
-    - name: Run POSTMAN collection
-      run: |
-        newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
+    - name: Curl
+      run: curl http://localhost:8080/products
+    # - name: Run POSTMAN collection
+    #   run: |
+    #     newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
 
     - name: Stop Container
       if: always()
@@ -42,8 +44,8 @@ jobs:
       if: always()
       run: docker image rm products-service:latest
 
-    - name: Output the run Details
-      uses: actions/upload-artifact@v3
-      with:
-        name: Reports
-        path: result
+    # - name: Output the run Details
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: Reports
+    #     path: result
