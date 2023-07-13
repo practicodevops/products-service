@@ -16,6 +16,8 @@ jobs:
   postman-testing:
     needs: build-and-analyze
     uses: ./.github/workflows/postman-testing.yaml
+    secrets:
+      EKS_URL: ${{ secrets.EKS_URL }}
 
   docker-push:
     runs-on: ubuntu-latest
