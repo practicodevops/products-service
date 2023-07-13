@@ -33,7 +33,7 @@ jobs:
     - name: Test
       run: |
         docker ps
-        curl http://localhost:8080/products
+        http://localhost:8080/products
     # - name: Run POSTMAN collection
     #   run: |
     #     newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
