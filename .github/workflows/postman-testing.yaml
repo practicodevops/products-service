@@ -10,7 +10,6 @@ jobs:
 
     steps: 
     - uses: actions/checkout@v3
-
     - name: Install Node
       uses: actions/checkout@v3
       with:
@@ -34,7 +33,7 @@ jobs:
       run: |
         docker ps
         docker port products-container
-        curl http://localhost:8080/products
+        curl localhost:8080/products
     # - name: Run POSTMAN collection
     #   run: |
     #     newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
