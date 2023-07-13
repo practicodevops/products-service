@@ -2,9 +2,6 @@ name: Postman testing
 
 on:
   workflow_call:
-    secrets:
-      EKS_URL:
-        required: true
 
 jobs:
   postman-testing:
@@ -27,15 +24,21 @@ jobs:
     - name: Make Directory for results
       run: mkdir result
 
-    - name: Install more-utils
-      run: sudo apt-get install moreutils
+    - name: Build Docker Image
+      run: docker build -t products-service:latest .
 
-    - name: Update Collection JSON with EKS Url
-      run: jq --arg value "${{ secrets.EKS_URL }}" '.variable[0].value=$value' products-service.postman_collection.json | sponge products-service.postman_collection.json
+    - name: Run Container
+      run: docker run -d --rm --name products-container -p 8080:8080 products-service:latest
 
     - name: Run POSTMAN collection
       run: |
         newman run "products-service.postman_collection.json" -r htmlextra --reporter-htmlextra-export result/report.html
+
+    - name: Stop Container
+      run: docker stop products-container
+      
+    - name: Delete Docker Image
+      run: docker image rm products-service:latest
 
     - name: Output the run Details
       uses: actions/upload-artifact@v3
