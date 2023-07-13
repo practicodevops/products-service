@@ -32,10 +32,10 @@ jobs:
     name: Postman testing
     runs-on: ubuntu-latest
     needs: build-image
-    env:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     container:
       image: ${{ env.DOCKERHUB_USERNAME }}/products-service-test:latest
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       volumes:
         - products-service.postman_collection.json:/app
 
