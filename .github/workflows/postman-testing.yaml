@@ -2,6 +2,9 @@ name: Postman testing
 
 on:
   workflow_call:
+    secrets:
+      EKS_URL:
+        required: true
 
 jobs:
   postman-testing:
@@ -23,6 +26,12 @@ jobs:
 
     - name: Make Directory for results
       run: mkdir result
+
+    - name: Update Collection JSON with EKS Url
+          uses: restackio/update-json-values-action@v1.0.0
+          with:
+            path: products-service.postman_collection.json
+            values: "{"variable: [{"key": "path", "value": "${{ secrets.EKS_URL }}", "type": "string"}]"}"
 
     - name: Run POSTMAN collection
       run: |
