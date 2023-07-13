@@ -33,7 +33,7 @@ jobs:
     - name: Test
       run: |
         docker ps
-        docker port container
+        docker port products-container
         curl http://localhost:8080/products
     # - name: Run POSTMAN collection
     #   run: |
