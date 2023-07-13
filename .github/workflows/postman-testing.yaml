@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-image
     container:
-      image: ${{ secrets.DOCKERHUB_USERNAME }}/products-service-test:latest
+      image: proyectodevopsem/products-service-test:latest
       volumes:
         - products-service.postman_collection.json:/app
 
