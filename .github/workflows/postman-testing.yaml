@@ -27,11 +27,11 @@ jobs:
     - name: Make Directory for results
       run: mkdir result
 
+    - name: Install more-utils
+      run: sudo apt-get install moreutils
+
     - name: Update Collection JSON with EKS Url
-          uses: restackio/update-json-values-action@v1.0.0
-          with:
-            path: products-service.postman_collection.json
-            values: "{"variable: [{"key": "path", "value": "${{ secrets.EKS_URL }}", "type": "string"}]"}"
+      run: jq --arg value "${{ secrets.EKS_URL }}" '.variable[0].value=$value' products-service.postman_collection.json | sponge products-service.postman_collection.json
 
     - name: Run POSTMAN collection
       run: |
