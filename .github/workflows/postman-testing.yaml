@@ -15,14 +15,15 @@ jobs:
     - name: Run Docker compose
       run: docker-compose -f "docker-compose.yaml" up -d
 
-    - name: Logs
-      run: |
-        docker ps 
-        docker logs postman-tests-container
+    - name: Sleep for 30 seconds
+      run: sleep 30s
+      shell: bash
 
-    - name: ls
-      run: |
-        tree
+    - name: Ps
+      run: docker ps
+    
+    - name: Logs
+      run: docker logs postman-tests-container
 
     - name: Output the run Details
       uses: actions/upload-artifact@v3
