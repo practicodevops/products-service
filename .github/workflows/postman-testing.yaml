@@ -19,6 +19,9 @@ jobs:
       run: sleep 15s
       shell: bash
 
+    - name: Display Results
+      run: docker logs postman-tests-container
+
     - name: Output the run Details
       uses: actions/upload-artifact@v3
       with:
