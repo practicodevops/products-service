@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
+    - name: Checkout
+      uses: actions/checkout@v1
+    
     - name: Run Docker compose
-      run: |
-        docker-compose up -d
+      run: docker-compose -f "docker-compose.yaml" up -d
 
     - name: ls
       run: |
