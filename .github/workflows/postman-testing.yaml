@@ -13,12 +13,11 @@ jobs:
     
     - name: Run Docker compose
       run: |
-        docker compose version
+        docker-compose up -d
 
     - name: ls
       run: |
-        cd postman
-        ls -la
+        tree
 
     - name: Output the run Details
       uses: actions/upload-artifact@v3
