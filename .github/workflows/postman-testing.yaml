@@ -15,6 +15,11 @@ jobs:
     - name: Run Docker compose
       run: docker-compose -f "docker-compose.yaml" up -d
 
+    - name: Logs
+      run: |
+        docker ps 
+        docker logs postman-tests-container
+
     - name: ls
       run: |
         tree
