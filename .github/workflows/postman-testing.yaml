@@ -29,4 +29,5 @@ jobs:
         path: postman/reports/
 
     - name: Clean Up Containers
+      if: ${{ always() }}
       run: docker-compose down
