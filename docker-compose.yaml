@@ -7,9 +7,6 @@ services:
     image: products-service
     ports:
       - "8080:8080"
-    healthcheck:
-      test: ["CMD", "wget", "http://localhost:8080/products"]
-      interval: 5s
 
   postman:
     container_name: postman-tests-container
@@ -17,12 +14,7 @@ services:
       context: ./postman
       dockerfile: Dockerfile
     image: postman-tests
-    command:
-      run products-service.postman_collection.json -k
-      -r cli,htmlextra
-      --reporter-htmlextra-export="reports/products-service-api-tests.html"
     volumes:
       - ./postman:/etc/newman
-    depends_on: 
-       products-service-api:
-        condition: service_healthy
+    depends_on:
+      - products-service-api
