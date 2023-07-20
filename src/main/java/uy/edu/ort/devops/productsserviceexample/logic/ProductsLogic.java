@@ -22,7 +22,6 @@ public class ProductsLogic {
         testProducts.put("123", new Product("123", "Producto 123", 10, "Este es un producto"));
         testProducts.put("321", new Product("321", "Producto 321", 10, "Este es un producto"));
         testProducts.put("111", new Product("111", "Producto 111", 10, "Este es un producto"));
-        testProducts.put("222", new Product("222", "Producto 222", 10, "Este es un producto nuevo"));
     }
 
     public Collection<Product> list() {
